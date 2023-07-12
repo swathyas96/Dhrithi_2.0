@@ -1,0 +1,8 @@
+venv/
+core/__pycache__/
+documents/
+ocr_api/__pycache__/
+ocr/__pycache__/
+ocr/migrations/
+db.sqlite3
+ocr_api/migrations/
