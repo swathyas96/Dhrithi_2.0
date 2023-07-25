@@ -1,13 +1,18 @@
 import datetime
-from django.db import models 
+from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
 
 def upload_to(instance: dict[any, any], filename: str) -> str:
     return "documents/{uploaded_by}/{filename}".format(
-        uploaded_by = instance.uploaded_by, filename=filename 
-    ) 
+        uploaded_by=instance.uploaded_by, filename=filename
+    )
+
+
+def upload_to_export_pdf(instance: dict[any, any], filename: str) -> str:
+    return "documents/convertedPDF/{filename}".format(filename=filename)
+
 
 class UploadOCRModel(models.Model):
     filename = models.CharField(max_length=250)
@@ -20,3 +25,10 @@ class UploadOCRModel(models.Model):
 
     def __str__(self) -> str:
         return self.filename
+
+
+class ExportPDF(models.Model):
+    file = models.FileField(_("File"), upload_to=upload_to_export_pdf)
+
+    def __str__(self) -> str:
+        return self.x

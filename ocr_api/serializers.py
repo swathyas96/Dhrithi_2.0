@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from ocr.models import UploadOCRModel
+from ocr.models import ExportPDF, UploadOCRModel
 
 
 class UploadOCRSerializer(serializers.ModelSerializer):
@@ -15,4 +15,12 @@ class UploadOCRSerializer(serializers.ModelSerializer):
             "uploaded_by",
             "uploaded_on",
         )
-        model = UploadOCRModel    
+        model = UploadOCRModel
+
+class ExportPDFSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            "id",
+            "file",
+        )
+        model = ExportPDF
